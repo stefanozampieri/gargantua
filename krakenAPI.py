@@ -114,3 +114,13 @@ def get_OHLC(pair,since): # Example of pair 'XXBTZEUR' for bitcoin/euro. since i
 	t=kraken.query_public('OHLC', data = {'pair': pair , 'since': since })
 	kraken.close()	
 	return t
+
+#***********Assets functions**********************
+
+def get_value(pair):
+	kraken=krakenex.API()
+	kraken.load_key("kraken.key")
+	t=kraken.query_public('Ticker', data= {'pair': pair})
+	t=t['result'][pair]['c'][0]
+	kraken.close()	
+	return t
